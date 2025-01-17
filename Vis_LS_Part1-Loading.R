@@ -3,7 +3,7 @@
 # Project                     : Characteristics and Patterns of the Top and Bottom 10% of Areas in England by Life Satisfaction
 # Author                      : Dionisio V. Del Orbe H.
 # Purpose of this file        : To load data and build data frame for analysis
-# Output data.frame           : "Indicators_merged", "Map_Indicators_merged"
+# Output data.frame           : "Indicators_merged"
 # Output image                : N/A
 # Pre-run another .R file?    : No
 #
@@ -19,7 +19,6 @@ library(tidyverse)
 library(readODS) # function: read_ods()     --> to load main dataset (.ods file)
 library(janitor) # function: clean_names()  --> to get valid name for loaded frames from datasets
 library(readxl)  # function: read_excel()   --> to load Excel files (.xlsx files)
-library(sf)      # function: st_read()      --> to read .geojson files
 
 
 ###############################
@@ -190,4 +189,4 @@ Indicators_merged <- Indicators_merged |>
 ################################
 
 # clears environment (deletes intermediate variables used in this .R file)
-rm(list = setdiff(ls(), c("Indicators_merged", "Map_Indicators_merged")))
+rm(list = setdiff(ls(), c("Indicators_merged")))
