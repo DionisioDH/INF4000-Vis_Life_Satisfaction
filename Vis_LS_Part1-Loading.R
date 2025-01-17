@@ -170,19 +170,20 @@ Indicators_merged <- satisfaction |>
 # these were excluded from the analysis as the data would be incomplete without their existance for all variables
 # *ref: https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2022-names-and-codes-in-the-uk/about
 
+###################################
+### 5. Treating Missing Values  ###
+###################################
 
-###############################################################################################
-### 7. Another data frame: loading "LAD boundaries" data set for future use (plotting map)  ###
-###############################################################################################
+#5.1 Exploratory data analysis:
+# here we see a data frame where any row is missing value
+View(Indicators_merged |> filter(if_any(everything(),is.na)))
+# LADs with missing values: 
+# E07000166 (Richmondshire) was estimated (inputed) as the average from 2016 and 2018 for satisfaction and anxiety (shown below)
+# E09000001 (City of London) and E06000053(Isles of Scilly) --> dropped (did not have satisfaction values for any year)
 
-#7.1 loads geographic coordinates of boundaries of LADs
-LADs_boundaries <- st_read("Data/Local_Authority_Districts.geojson") #374 rows (all of UK)
-LADs_boundaries <- LADs_boundaries |> filter(!grepl("^(W|S|K|N)", LAD22CD)) # 309 rows (only England)
-
-#7.2 Joining map coordinates with indicators frame:
-# left_join used to keep all boundary definitions for plotting
-Map_Indicators_merged <- LADs_boundaries |>
-  left_join(Indicators_merged, by= c("LAD22CD"="LAD_codes"))# 309 rows
+#5.2 dropping missing rows:
+Indicators_merged <- Indicators_merged |> 
+  drop_na() # two rows dropped (E09000001 (City of London) and E06000053(Isles of Scilly)) # 292 rows
 
 ################################
 ### 9. Clearing environment  ###
