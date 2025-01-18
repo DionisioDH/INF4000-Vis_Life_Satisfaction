@@ -1,4 +1,4 @@
-# Life satisfaction of the top and bottom 10% areas in England (2017)
+# Project: Characteristics and Patterns of Areas in England with the Top and Bottom 10% Life Satisfaction (2017)
 
 ## Introduction
 This project analyzes the life satisfaction of the top and bottom 10% areas in England in 2017, based on Local Authority Districts (LADs). The analysis is carried out through five `.R` script files. The first script loads the data, while the subsequent scripts each plot a specific panel of the overall figure presented below.
